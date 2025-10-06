@@ -1,5 +1,5 @@
 //=== index.js ===
-// index.js
+
 class BarberConnectApp {
     constructor() {
         this.sentimentPipeline = null;
@@ -88,6 +88,10 @@ class BarberConnectApp {
     }
 
     async initializeSentimentAnalysis() {
+        if (!window.transformers || !window.transformers.pipeline) {
+            setTimeout(() => this.initializeSentimentAnalysis(), 200);
+            return;
+        }
         const deviceToggle = document.getElementById('deviceToggle');
         const useWebGPU = deviceToggle?.checked && this.isWebGPUSupported;
         
