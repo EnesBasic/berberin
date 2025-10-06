@@ -1,0 +1,1263 @@
+=== index.html ===
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BarberConnect - Welcome</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <script type="module">
+        import { pipeline } from 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.3';
+        window.transformers = { pipeline };
+    </script>
+
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <i class="fas fa-cut"></i>
+                    <span>BarberConnect</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#home" class="nav-link">Home</a>
+                    <a href="#features" class="nav-link">Features</a>
+                    <a href="#testimonials" class="nav-link">Testimonials</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+        <div class="header-content">
+            <h1 class="header-title">Welcome to BarberConnect</h1>
+            <p class="header-subtitle">The modern platform connecting barbers with their clients</p>
+            <div class="built-with">
+                Built with <a href="https://huggingface.co/spaces/akhaliq/anycoder" target="_blank" rel="noopener">anycoder</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- User Selection Section -->
+        <section class="user-selection" id="home">
+            <div class="container">
+                <h2 class="section-title">Choose Your Path</h2>
+                <div class="user-cards">
+                    <div class="user-card barber-card" data-role="barber">
+                        <div class="card-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3>I'm a Barber</h3>
+                        <p>Manage appointments, showcase your work, and grow your client base</p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> Online booking system</li>
+                            <li><i class="fas fa-check"></i> Portfolio showcase</li>
+                            <li><i class="fas fa-check"></i> Client management</li>
+                            <li><i class="fas fa-check"></i> Schedule management</li>
+                        </ul>
+                        <button class="btn btn-primary" onclick="selectUserType('barber')">Get Started</button>
+                    </div>
+                    <div class="user-card client-card" data-role="client">
+                        <div class="card-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3>I'm a Client</h3>
+                        <p>Find the perfect barber, book appointments, and manage your style</p>
+                        <ul class="card-features">
+                            <li><i class="fas fa-check"></i> Find local barbers</li>
+                            <li><i class="fas fa-check"></i> Easy booking</li>
+                            <li><i class="fas fa-check"></i> Style gallery</li>
+                            <li><i class="fas fa-check"></i> Reviews & ratings</li>
+                        </ul>
+                        <button class="btn btn-secondary" onclick="selectUserType('client')">Get Started</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features" id="features">
+            <div class="container">
+                <h2 class="section-title">Platform Features</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-calendar-check"></i>
+                        <h3>Smart Scheduling</h3>
+                        <p>AI-powered appointment scheduling that works around your availability</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-star"></i>
+                        <h3>Review System</h3>
+                        <p>Share and read authentic reviews with sentiment analysis</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h3>Mobile Ready</h3>
+                        <p>Access everything from any device, anywhere, anytime</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Secure Payments</h3>
+                        <p>Safe and secure payment processing for all transactions</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials" id="testimonials">
+            <div class="container">
+                <h2 class="section-title">What Our Users Say</h2>
+                <div class="testimonial-container">
+                    <div class="testimonial-form">
+                        <h3>Share Your Experience</h3>
+                        <form id="reviewForm">
+                            <div class="form-group">
+                                <label for="userName">Your Name</label>
+                                <input type="text" id="userName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="userRole">You are a</label>
+                                <select id="userRole" required>
+                                    <option value="">Select...</option>
+                                    <option value="barber">Barber</option>
+                                    <option value="client">Client</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="reviewText">Your Review</label>
+                                <textarea id="reviewText" rows="4" required placeholder="Share your experience with BarberConnect..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="deviceToggle">AI Processing</label>
+                                <div class="device-toggle">
+                                    <span>CPU</span>
+                                    <label class="switch">
+                                        <input type="checkbox" id="deviceToggle">
+                                        <span class="slider"></span>
+                                    </label>
+                                    <span>GPU (WebGPU)</span>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <span id="submitBtnText">Submit Review</span>
+                                <i class="fas fa-spinner fa-spin" id="submitLoader" style="display: none;"></i>
+                            </button>
+                        </form>
+                        <div id="sentimentResult" class="sentiment-result" style="display: none;">
+                            <h4>Sentiment Analysis Result</h4>
+                            <div class="sentiment-score">
+                                <span class="label">Sentiment:</span>
+                                <span id="sentimentLabel" class="value"></span>
+                            </div>
+                            <div class="sentiment-score">
+                                <span class="label">Confidence:</span>
+                                <span id="sentimentConfidence" class="value"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-list">
+                        <div id="testimonialsList">
+                            <!-- Testimonials will be added here dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>info@barberconnect.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Phone</h4>
+                                <p>+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Address</h4>
+                                <p>123 Style Street, Fashion City, FC 12345</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <h4>Follow Us</h4>
+                        <div class="social-icons">
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 BarberConnect. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Welcome!</h2>
+            <p id="modalMessage">Thank you for choosing BarberConnect.</p>
+            <button class="btn btn-primary" onclick="closeModal()">Continue</button>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
+
+=== index.js ===
+// index.js
+class BarberConnectApp {
+    constructor() {
+        this.sentimentPipeline = null;
+        this.isWebGPUSupported = false;
+        this.testimonials = [
+            {
+                name: "John Smith",
+                role: "Client",
+                text: "BarberConnect made it so easy to find a great barber in my area. The booking system is seamless!",
+                sentiment: "positive",
+                confidence: 0.95
+            },
+            {
+                name: "Mike Johnson",
+                role: "Barber",
+                text: "This platform has helped me grow my business by 40% in just 3 months. Highly recommended!",
+                sentiment: "positive",
+                confidence: 0.92
+            },
+            {
+                name: "Sarah Williams",
+                role: "Client",
+                text: "I love being able to see reviews and portfolios before booking. Takes the guesswork out of finding a good barber.",
+                sentiment: "positive",
+                confidence: 0.88
+            }
+        ];
+        this.init();
+    }
+
+    async init() {
+        this.setupEventListeners();
+        this.checkWebGPUSupport();
+        this.loadTestimonials();
+        this.initializeSentimentAnalysis();
+    }
+
+    setupEventListeners() {
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn?.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(anchor.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        });
+
+        // Review form submission
+        const reviewForm = document.getElementById('reviewForm');
+        reviewForm?.addEventListener('submit', (e) => {
+            e.preventDefault();
+            this.handleReviewSubmission();
+        });
+
+        // Device toggle change
+        const deviceToggle = document.getElementById('deviceToggle');
+        deviceToggle?.addEventListener('change', () => {
+            this.initializeSentimentAnalysis();
+        });
+    }
+
+    async checkWebGPUSupport() {
+        if ('gpu' in navigator) {
+            try {
+                const adapter = await navigator.gpu.requestAdapter();
+                this.isWebGPUSupported = !!adapter;
+            } catch (error) {
+                console.log('WebGPU not available:', error);
+            }
+        }
+    }
+
+    async initializeSentimentAnalysis() {
+        const deviceToggle = document.getElementById('deviceToggle');
+        const useWebGPU = deviceToggle?.checked && this.isWebGPUSupported;
+        
+        if (!this.sentimentPipeline) {
+            try {
+                const device = useWebGPU ? 'webgpu' : 'wasm';
+                this.sentimentPipeline = await window.transformers.pipeline(
+                    'sentiment-analysis',
+                    'Xenova/distilbert-base-uncased-finetuned-sst-2-english',
+                    { device }
+                );
+                console.log(`Sentiment analysis initialized on ${device}`);
+            } catch (error) {
+                console.error('Failed to initialize sentiment analysis:', error);
+                this.sentimentPipeline = null;
+            }
+        }
+    }
+
+    async handleReviewSubmission() {
+        const userName = document.getElementById('userName').value;
+        const userRole = document.getElementById('userRole').value;
+        const reviewText = document.getElementById('reviewText').value;
+        const submitBtn = document.querySelector('#reviewForm button[type="submit"]');
+        const submitBtnText = document.getElementById('submitBtnText');
+        const submitLoader = document.getElementById('submitLoader');
+        const sentimentResult = document.getElementById('sentimentResult');
+
+        // Show loading state
+        submitBtn.disabled = true;
+        submitBtnText.textContent = 'Analyzing...';
+        submitLoader.style.display = 'inline-block';
+
+        try {
+            // Perform sentiment analysis if pipeline is available
+            let sentimentData = { label: 'neutral', score: 0.5 };
+            
+            if (this.sentimentPipeline) {
+                const result = await this.sentimentPipeline(reviewText);
+                if (result && result.length > 0) {
+                    sentimentData = {
+                        label: result[0].label,
+                        score: result[0].score
+                    };
+                }
+            }
+
+            // Add new testimonial
+            const newTestimonial = {
+                name: userName,
+                role: userRole,
+                text: reviewText,
+                sentiment: sentimentData.label.toLowerCase(),
+                confidence: (sentimentData.score * 100).toFixed(1)
+            };
+
+            this.testimonials.unshift(newTestimonial);
+            this.loadTestimonials();
+
+            // Show sentiment analysis result
+            if (this.sentimentPipeline) {
+                document.getElementById('sentimentLabel').textContent = 
+                    sentimentData.label.charAt(0).toUpperCase() + sentimentData.label.slice(1);
+                document.getElementById('sentimentLabel').className = 
+                    `value ${sentimentData.label.toLowerCase()}`;
+                document.getElementById('sentimentConfidence').textContent = 
+                    `${newTestimonial.confidence}%`;
+                sentimentResult.style.display = 'block';
+            }
+
+            // Reset form
+            document.getElementById('reviewForm').reset();
+            
+            // Show success message
+            this.showModal('Thank You!', 'Your review has been submitted successfully.');
+
+        } catch (error) {
+            console.error('Error submitting review:', error);
+            this.showModal('Error', 'Failed to submit review. Please try again.');
+        } finally {
+            // Reset button state
+            submitBtn.disabled = false;
+            submitBtnText.textContent = 'Submit Review';
+            submitLoader.style.display = 'none';
+        }
+    }
+
+    loadTestimonials() {
+        const testimonialsList = document.getElementById('testimonialsList');
+        if (!testimonialsList) return;
+
+        testimonialsList.innerHTML = this.testimonials.map(testimonial => `
+            <div class="testimonial-item">
+                <div class="testimonial-header">
+                    <div class="testimonial-author">
+                        <strong>${testimonial.name}</strong>
+                        <span class="testimonial-role">${testimonial.role}</span>
+                    </div>
+                    <div class="testimonial-sentiment ${testimonial.sentiment}">
+                        <i class="fas fa-${testimonial.sentiment === 'positive' ? 'smile' : testimonial.sentiment === 'negative' ? 'frown' : 'meh'}"></i>
+                        <span>${testimonial.confidence}%</span>
+                    </div>
+                </div>
+                <p class="testimonial-text">${testimonial.text}</p>
+            </div>
+        `).join('');
+    }
+
+    showModal(title, message) {
+        const modal = document.getElementById('modal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalMessage = document.getElementById('modalMessage');
+        
+        if (modal && modalTitle && modalMessage) {
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            modal.style.display = 'block';
+        }
+    }
+
+    selectUserType(type) {
+        const titles = {
+            barber: 'Welcome, Barber!',
+            client: 'Welcome, Client!'
+        };
+        
+        const messages = {
+            barber: 'Start managing your appointments and growing your client base today.',
+            client: 'Find the perfect barber and book your next appointment with ease.'
+        };
+        
+        this.showModal(titles[type], messages[type]);
+    }
+}
+
+// Global functions for onclick handlers
+function selectUserType(type) {
+    window.app.selectUserType(type);
+}
+
+function closeModal() {
+    const modal = document.getElementById('modal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+    const modal = document.getElementById('modal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+}
+
+// Initialize app when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    window.app = new BarberConnectApp();
+});
+
+=== style.css ===
+/* style.css */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #e74c3c;
+    --accent-color: #3498db;
+    --text-light: #ecf0f1;
+    --text-dark: #2c3e50;
+    --bg-light: #f8f9fa;
+    --bg-dark: #34495e;
+    --success-color: #27ae60;
+    --warning-color: #f39c12;
+    --error-color: #e74c3c;
+    --border-radius: 12px;
+    --transition: all 0.3s ease;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background-color: var(--bg-light);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Styles */
+.header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--bg-dark) 100%);
+    color: var(--text-light);
+    padding: 20px 0 60px;
+}
+
+.navbar {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.nav-logo i {
+    font-size: 2rem;
+    color: var(--secondary-color);
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-link {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    position: relative;
+}
+
+.nav-link:hover {
+    color: var(--accent-color);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    transition: var(--transition);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.header-content {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.header-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    animation: fadeInUp 0.8s ease;
+}
+
+.header-subtitle {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    animation: fadeInUp 0.8s ease 0.2s both;
+}
+
+.built-with {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.built-with a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.built-with a:hover {
+    text-decoration: underline;
+}
+
+/* Section Styles */
+section {
+    padding: 80px 0;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 50px;
+    color: var(--primary-color);
+}
+
+/* User Selection Section */
+.user-selection {
+    background: white;
+}
+
+.user-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.user-card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 40px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border: 2px solid transparent;
+}
+
+.user-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-hover);
+}
+
+.barber-card {
+    border-color: var(--primary-color);
+}
+
+.client-card {
+    border-color: var(--accent-color);
+}
+
+.card-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: white;
+}
+
+.user-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.user-card p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.card-features {
+    list-style: none;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.card-features li {
+    padding: 8px 0;
+    color: #555;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.card-features i {
+    color: var(--success-color);
+}
+
+/* Button Styles */
+.btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--bg-dark));
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(44, 62, 80, 0.3);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, var(--accent-color), #2980b9);
+    color: white;
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Features Section */
+.features {
+    background: var(--bg-light);
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.feature-item {
+    background: white;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    text-align: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+}
+
+.feature-item i {
+    font-size: 3rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+}
+
+.feature-item h3 {
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.feature-item p {
+    color: #666;
+}
+
+/* Testimonials Section */
+.testimonials {
+    background: white;
+}
+
+.testimonial-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.testimonial-form {
+    background: var(--bg-light);
+    padding: 30px;
+    border-radius: var(--border-radius);
+}
+
+.testimonial-form h3 {
+    margin-bottom: 20px;
+    color: var(--primary-color);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-dark);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.device-toggle {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: var(--transition);
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: var(--transition);
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--accent-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.sentiment-result {
+    margin-top: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-color);
+}
+
+.sentiment-result h4 {
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.sentiment-score {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.sentiment-score .label {
+    font-weight: 500;
+}
+
+.sentiment-score .value {
+    font-weight: 600;
+}
+
+.sentiment-score .value.positive {
+    color: var(--success-color);
+}
+
+.sentiment-score .value.negative {
+    color: var(--error-color);
+}
+
+.sentiment-score .value.neutral {
+    color: var(--warning-color);
+}
+
+.testimonial-list {
+    max-height: 500px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.testimonial-item {
+    background: var(--bg-light);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.testimonial-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.testimonial-author strong {
+    color: var(--primary-color);
+}
+
+.testimonial-role {
+    display: block;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.testimonial-sentiment {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.testimonial-sentiment.positive {
+    background: rgba(39, 174, 96, 0.1);
+    color: var(--success-color);
+}
+
+.testimonial-sentiment.negative {
+    background: rgba(231, 76, 60, 0.1);
+    color: var(--error-color);
+}
+
+.testimonial-sentiment.neutral {
+    background: rgba(243, 156, 18, 0.1);
+    color: var(--warning-color);
+}
+
+.testimonial-text {
+    color: #555;
+    line-height: 1.6;
+}
+
+/* Contact Section */
+.contact {
+    background: var(--bg-light);
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.contact-info {
+    display: grid;
+    gap: 30px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.contact-item i {
+    font-size: 2rem;
+    color: var(--accent-color);
+    width: 50px;
+}
+
+.contact-item h4 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.contact-item p {
+    color: #666;
+}
+
+.social-links h4 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    width: 45px;
+    height: 45px;
+    background: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+
+.social-icons a:hover {
+    background: var(--accent-color);
+    transform: translateY(-3px);
+}
+
+/* Footer */
+.footer {
+    background: var(--primary-color);
+    color: var(--text-light);
+    text-align: center;
+    padding: 30px 0;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 40px;
+    border-radius: var(--border-radius);
+    width: 90%;
+    max-width: 500px;
+    text-align: center;
+    animation: slideIn 0.3s ease;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.close:hover {
+    color: var(--text-dark);
+}
+
+.modal h2 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.modal p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: var(--primary-color);
+        flex-direction: column;
+        justify-content: start;
+        padding-top: 50px;
+        transition: var(--transition);
+    }
+
+    .nav-links.active {
+        left: 0;
+    }
+
+    .nav-links .nav-link {
+        padding: 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .mobile-menu-btn {
+        display: block;
+    }
+
+    .header-title {
+        font-size: 2rem;
+    }
+
+    .header-subtitle {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .user-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .testimonial-container {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-content {
+        grid-template-columns: 1fr;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .modal-content {
+        margin: 30% auto;
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    section {
+        padding: 50px 0;
+    }
+
+    .user-card {
+        padding: 30px 20px;
+    }
+
+    .testimonial-form {
+        padding: 20px;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+}
+
+/* Scrollbar Styling */
+.testimonial-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.testimonial-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.testimonial-list::-webkit-scrollbar-thumb {
+    background: var(--accent-color);
+    border-radius: 10px;
+}
+
+.testimonial-list::-webkit-scrollbar-thumb:hover {
+    background: #2980b9;
+}
